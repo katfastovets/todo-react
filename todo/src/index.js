@@ -21,13 +21,19 @@ import TodoList from './components/TodoList';
 // 	}
 // }
 
+const todoData = [
+	{label: 'One1', important: false, id: 1},
+	{label: 'Two2', important: true, id: 2},
+	{label: 'Third3', important: false, id: 3}
+];
+
 const App = () => {
 
 	return (
 		<div>
 			<AppHeader />
 			<SearchPanel />
-			<TodoList />
+			<TodoList todos={todoData} />
 		</div>
 	);
 };
