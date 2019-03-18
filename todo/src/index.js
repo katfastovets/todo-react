@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import AppHeader from './components/AppHeader';
+import SearchPanel from './components/SearchPanel';
+import TodoList from './components/TodoList';
+
 // export default class index extends React.Component {
 // 	static propTypes = {
 // 		name: React.PropTypes.string,
@@ -16,24 +20,6 @@ import ReactDOM from 'react-dom';
 // 		);
 // 	}
 // }
-
-const TodoList = () => {
-	const items = ['One', 'Two'];
-	return (
-        <ul>
-            <li>One</li>
-            <li>Two</li>
-        </ul>
-	);
-};
-
-const AppHeader = () => {
-	return <h1>Todo List</h1>;
-};
-
-const SearchPanel = () => {
-	return <input placeholder="search" />;
-};
 
 const App = () => {
 
