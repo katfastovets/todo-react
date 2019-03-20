@@ -4,22 +4,9 @@ import ReactDOM from 'react-dom';
 import AppHeader from './components/AppHeader';
 import SearchPanel from './components/SearchPanel';
 import TodoList from './components/TodoList';
+import ItemStatusFilter from './components/ItemStatusFilter';
 
-// export default class index extends React.Component {
-// 	static propTypes = {
-// 		name: React.PropTypes.string,
-// 	};
-
-// 	constructor(props) {
-// 		super(props);
-// 	}
-
-// 	render() {
-// 		return (
-// 			<div></div>
-// 		);
-// 	}
-// }
+import './index.css';
 
 const todoData = [
 	{label: 'One1', important: false, id: 1},
@@ -30,9 +17,12 @@ const todoData = [
 const App = () => {
 
 	return (
-		<div>
-			<AppHeader />
-			<SearchPanel />
+		<div className="todo-app">
+			<AppHeader toDo={1} done={3} />
+			<div className="top-panel d-flex">
+				<SearchPanel />
+				<ItemStatusFilter />
+			</div>
 			<TodoList todos={todoData} />
 		</div>
 	);
