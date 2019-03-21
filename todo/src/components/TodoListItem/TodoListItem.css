@@ -13,6 +13,10 @@
   cursor: pointer;
   user-select: none;
 }
+.todo-list-item-label-important {
+  color: tomato;
+  font-weight: bold;
+}
 
 .todo-list-item.done .todo-list-item-label {
   text-decoration: line-through;
