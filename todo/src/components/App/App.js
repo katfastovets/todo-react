@@ -8,9 +8,9 @@ import ItemStatusFilter from '../ItemStatusFilter';
 import './App.css';
 
 const todoData = [
-	{label: 'One1', important: false, id: 1},
-	{label: 'Two2', important: true, id: 2},
-	{label: 'Third3', important: false, id: 3}
+	{label: 'One1', id: 1},
+	{label: 'Two2', id: 2},
+	{label: 'Third3', id: 3}
 ];
 
 const App = () => {
