@@ -15,14 +15,18 @@ export default class TodoListItem extends Component {
 	}	
 
 	onLabelClick = () => {
-		this.setState({
-			done: !this.state.done
+		this.setState(({done}) => { //тоже самое, только с деструктуризацией
+			return {
+				done: !done
+			}
 		})
 	}
 
-	makeImportant = () => {
-		this.setState({
-			important: !this.state.important
+	onMarkImportant = () => {
+		this.setState((state) => { //setState выполнится только тогда, когда state будет в финальном состоянии
+			return {
+				important: !state.important
+			}
 		})
 	}
 
@@ -52,7 +56,7 @@ export default class TodoListItem extends Component {
 			    </span>
 			    <button type="button"
 			            className="btn btn-outline-success btn-sm float-right"
-			            onClick={this.makeImportant} >
+			            onClick={this.onMarkImportant} >
 			        <i className="fa fa-exclamation" />
 			    </button>
 
