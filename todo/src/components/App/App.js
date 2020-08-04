@@ -104,7 +104,9 @@ export default class App extends Component {
 			<div className="todo-app">
 				<AppHeader toDo={todoCount} done={doneCount} />
 				<div className="top-panel d-flex">
-					<SearchPanel />
+					<SearchPanel
+
+					/>
 					<ItemStatusFilter />
 				</div>
 				<TodoList 

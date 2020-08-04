@@ -1,3 +1,7 @@
 .addItemForm {
 	margin-top: 10px;
 }
+
+.addItemForm .formControl {
+	height: auto;
+}
