@@ -1,48 +1,41 @@
-import React, {Component} from 'react';
+import React, { useState } from 'react';
 
 import './AddItemForm.css';
 
-export default class AddItemForm extends Component {
+const AddItemForm = ({ onAdding }) => {
+	const [taskValue, setTaskValue] = useState('');
 
-	state = {
-		taskValue: '',
+
+	const onLabelChange = (e) => {
+		setTaskValue(e.target.value.toUpperCase()); //here can control what are typing in component
+		//in setState: when current state not depends in previous, can pass just object
 	}
 
-
-	onLabelChange = (e) => {
-		//when current state not depends in previous, can pass just object
-		this.setState({
-			taskValue: e.target.value.toUpperCase() //here can control what are typing in component
-		})
-	}
-
-	submitHandle = (e) => {
+	const submitHandle = (e) => {
 		e.preventDefault();
-		this.props.onAdding(this.state.taskValue);
-		this.setState({
-			taskValue: ''
-		})
+		onAdding(taskValue);
+		setTaskValue('');
 	}
 
-	render() {
-		return (
-			<form
-				className="addItemForm d-flex"
-				onSubmit={this.submitHandle}
+	return (
+		<form
+			className="addItemForm d-flex"
+			onSubmit={submitHandle}
+		>
+			<input
+				type="text"
+				className="form-control formControl"
+				onChange={onLabelChange}
+				placeholder="What's up?"
+				value={taskValue} //this is controlled component
+			/>
+			<button
+				className="btn btn-outline-secondary"
 			>
-				<input
-					type="text"
-					className="form-control formControl"
-					onChange={this.onLabelChange}
-					placeholder="What's up?"
-					value={this.state.taskValue} //this is controlled component
-				/>
-				<button 
-					className="btn btn-outline-secondary"
-				>
-					Add Item
-				</button>
-			</form>
-		);
-	}
+				Add Item
+			</button>
+		</form>
+	);
 }
+
+export default AddItemForm;
