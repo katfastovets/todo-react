@@ -10,26 +10,21 @@ import './App.css';
 
 
 const App = () => {
-
-    let maxId = 100;
+    const [todoData, setTodoData] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
+    const [status, setStatus] = useState('all');
+    const [maxId, setMaxId] = useState(100);
 
     const createItem = (label) => {
-        return {
+        const newItem = {
             label,
             done: false,
             important: false,
-            id: maxId++
-        }
+            id: maxId
+        };
+        setMaxId(maxId + 1)
+        return newItem
     }
-
-    const initialTodoData = [
-        createItem('One1'),
-        createItem('Two2'),
-        createItem('Third3'),
-    ];
-
-    const [todoData, setTodoData] = useState(initialTodoData);
-
 
     const toggleProperty = (arr, id, propName) => {
         const idx = arr.findIndex((el) => el.id === id);
@@ -73,6 +68,14 @@ const App = () => {
         setTodoData(toggleProperty(todoData, id, 'done'));
     }
 
+    const onChangeSearchHandler = (e) => {
+        setSearchValue(e.target.value);
+    }
+
+    const filterStatus = (status) => {
+        setStatus(status);
+    }
+
     const doneCount = todoData.filter((item) => {
         return item.done
     }).length;
@@ -82,14 +85,23 @@ const App = () => {
         <div className="todo-app">
             <AppHeader toDo={todoCount} done={doneCount}/>
             <div className="top-panel d-flex">
-                <SearchPanel />
-                <ItemStatusFilter/>
+                <SearchPanel
+                    list={todoData}
+                    value={searchValue}
+                    updateValue={onChangeSearchHandler}
+                />
+                <ItemStatusFilter
+                  filterStatus={filterStatus}
+                  activeStatus={status}
+                />
             </div>
             <TodoList
                 todos={todoData}
+                searchValue={searchValue}
                 onDeleted={deleteItem}
                 onToggleImportant={onToggleImportant}
                 onToggleDone={onToggleDone}
+                status={status}
             />
             <AddItemForm
                 onAdding={addItem}

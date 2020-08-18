@@ -2,12 +2,36 @@ import React from 'react';
 
 import './ItemStatusFilter.css';
 
-const ItemStatusFilter = () => {
+const buttonsConfig = [
+	{
+		status: 'all',
+	},
+	{
+		status: 'active',
+	},
+	{
+		status: 'done',
+	}
+]
+
+const ItemStatusFilter = ({ filterStatus, activeStatus }) => {
+
+	const additionalClassName = (status) => {
+		return activeStatus === status ? 'btn-info' : 'btn-outline-secondary'
+	}
+
 	return (
 		<div className="btn-group">
-			<button type="button" className="btn btn-info">All</button>
-			<button type="button" className="btn btn-outline-secondary">Active</button>
-			<button type="button" className="btn btn-outline-secondary">Done</button>
+			{buttonsConfig.map(({ status }) => (
+				<button
+					key={status}
+					type="button"
+					className={`btn ${additionalClassName(status)}`}
+					onClick={() => filterStatus(status)}
+				>
+					{status.charAt(0).toUpperCase() + status.slice(1)}
+				</button>
+			))}
 		</div>
 	);
 }
